@@ -29,7 +29,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   decoration: BoxDecoration(
                     color: Colors.grey[300],
                     image: const DecorationImage(
-                      image: NetworkImage(''),
+                      image: AssetImage('assets/images/wallpaper.jpg'),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -178,20 +178,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         Container(
                           decoration: BoxDecoration(
                               image: DecorationImage(
-                                  image: AssetImage(
-                                      'assets/icons/crying_emoji.jpg'))),
+                                  image: AssetImage('assets/icons/otlum.jpg'))),
                         ),
                         Container(
                           decoration: BoxDecoration(
                               image: DecorationImage(
-                                  image: AssetImage(
-                                      'assets/icons/crying_emoji.jpg'))),
+                                  image: AssetImage('assets/icons/otlum.jpg'))),
                         ),
                         Container(
                           decoration: BoxDecoration(
                               image: DecorationImage(
-                                  image: AssetImage(
-                                      'assets/icons/crying_emoji.jpg'))),
+                                  image: AssetImage('assets/icons/otlum.jpg'))),
                         ),
                         Container(
                           decoration: BoxDecoration(
