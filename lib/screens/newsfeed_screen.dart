@@ -13,6 +13,8 @@ class NewsFeedScreen extends StatelessWidget {
           postContent: 'Tagal mag December 20....',
           datePosted: 'December 9, 2024',
           likes: 800,
+          profileImageUrl: 'assets/icons/crying_emoji.jpg',
+          imageUrl: 'assets/images/dog1.jpg',
         ),
         NewsFeedCard(
           userName: 'Duday',

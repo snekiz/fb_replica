@@ -4,12 +4,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../widgets/custom_font.dart';
 
-// ignore: must_be_immutable
-class DetailScreen extends StatelessWidget {
+class DetailScreen extends StatefulWidget {
   final String userName;
   final String postContent;
   final String date;
-  int numOfLikes;
+  final int numOfLikes;
   final String imageUrl;
   final String profileImageUrl;
 
@@ -24,12 +23,31 @@ class DetailScreen extends StatelessWidget {
   });
 
   @override
+  _DetailScreenState createState() => _DetailScreenState();
+}
+
+class _DetailScreenState extends State<DetailScreen> {
+  late int currentLikes;
+
+  @override
+  void initState() {
+    super.initState();
+    currentLikes = widget.numOfLikes;
+  }
+
+  void incrementLikes() {
+    setState(() {
+      currentLikes++;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: CustomFont(
-          text: userName,
+          text: widget.userName,
           fontSize: ScreenUtil().setSp(20),
           color: Colors.black,
         ),
@@ -39,11 +57,11 @@ class DetailScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              imageUrl == ''
+              widget.imageUrl == ''
                   ? SizedBox(
                       height: ScreenUtil().setHeight(0),
                     )
-                  : Image.network(imageUrl),
+                  : Image.asset(widget.imageUrl),
               SizedBox(
                 height: ScreenUtil().setHeight(20),
               ),
@@ -53,11 +71,11 @@ class DetailScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    (profileImageUrl == '')
+                    (widget.profileImageUrl == '')
                         ? const Icon(Icons.person)
                         : CircleAvatar(
                             radius: ScreenUtil().setSp(25),
-                            backgroundImage: NetworkImage(profileImageUrl),
+                            backgroundImage: AssetImage(widget.profileImageUrl),
                           ),
                     SizedBox(
                       width: ScreenUtil().setWidth(10),
@@ -66,7 +84,7 @@ class DetailScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CustomFont(
-                          text: userName,
+                          text: widget.userName,
                           fontSize: ScreenUtil().setSp(20),
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
@@ -76,7 +94,7 @@ class DetailScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             CustomFont(
-                              text: date,
+                              text: widget.date,
                               fontSize: ScreenUtil().setSp(15),
                               color: Colors.grey,
                             ),
@@ -104,7 +122,7 @@ class DetailScreen extends StatelessWidget {
                     EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(20)),
                 alignment: Alignment.centerLeft,
                 child: CustomFont(
-                  text: postContent,
+                  text: widget.postContent,
                   fontSize: ScreenUtil().setSp(18),
                   color: Colors.black,
                 ),
@@ -120,14 +138,15 @@ class DetailScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     TextButton.icon(
-                      onPressed: () {},
+                      onPressed: incrementLikes,
                       icon: const Icon(
                         Icons.thumb_up,
                         color: FB_DARK_PRIMARY,
                       ),
                       label: CustomFont(
-                        text:
-                            (numOfLikes == 0) ? 'Like' : numOfLikes.toString(),
+                        text: (currentLikes == 0)
+                            ? 'Like'
+                            : currentLikes.toString(),
                         fontSize: ScreenUtil().setSp(12),
                         color: FB_DARK_PRIMARY,
                       ),
