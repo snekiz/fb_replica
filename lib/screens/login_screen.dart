@@ -1,8 +1,10 @@
+import '../widgets/custom_dialogs.dart';
 import '../widgets/custom_textformfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../constants.dart';
 import '../widgets/custom_inkwell_button.dart';
+import 'profile_screen.dart';
 
 class LogInScreen extends StatefulWidget {
   const LogInScreen({super.key});
@@ -15,6 +17,19 @@ class _LogInScreenState extends State<LogInScreen> {
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  bool isPasswordVisible = false;
+
+  void _loginDialog() {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+       Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => ProfileScreen()), 
+    );
+    } else {
+      customDialog(context, title: 'Invalid Input', content: 'Please enter both username and password.');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +55,7 @@ class _LogInScreenState extends State<LogInScreen> {
                   child: Column(
                     children: [
                       Image.asset(
-                        'assets/images/mylogo.png',
+                        'assets/images/fb.png',
                         height: ScreenUtil().setHeight(200),
                       ),
                       SizedBox(height: ScreenUtil().setHeight(30)),
@@ -61,7 +76,7 @@ class _LogInScreenState extends State<LogInScreen> {
                         height: ScreenUtil().setHeight(10),
                         width: ScreenUtil().setWidth(10),
                         controller: passwordController,
-                        isObscure: true,
+                        isObscure: !isPasswordVisible,
                         validator: (value) =>
                             value!.isEmpty ? 'Enter your password' : null,
                         onSaved: (value) => passwordController.text = value!,
@@ -69,13 +84,23 @@ class _LogInScreenState extends State<LogInScreen> {
                         fontColor: FB_DARK_PRIMARY,
                         hintTextSize: ScreenUtil().setSp(15),
                         hintText: 'Password',
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            isPasswordVisible
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              isPasswordVisible = !isPasswordVisible;
+                            });
+                          },
+                        ),
                       ),
                       SizedBox(height: ScreenUtil().setHeight(50)),
                       CustomInkwellButton(
                         onTap: () {
-                          if (_formKey.currentState!.validate()) {
-                            _formKey.currentState!.save();
-                          }
+                          _loginDialog();
                         },
                         height: ScreenUtil().setHeight(40),
                         width: ScreenUtil().screenWidth,

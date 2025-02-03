@@ -29,7 +29,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   decoration: BoxDecoration(
                     color: Colors.grey[300],
                     image: const DecorationImage(
-                      image: NetworkImage(''),
+                      image: AssetImage('assets/images/wallpaper.jpg'),
                       fit: BoxFit.cover,
                     ),
                   ),

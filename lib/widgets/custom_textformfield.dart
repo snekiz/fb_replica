@@ -20,6 +20,7 @@ class CustomTextFormField extends StatelessWidget {
     required this.width,
     this.keyboardType = TextInputType.text,
     this.maxLength = 200,
+    this.suffixIcon,
   });
 
   final validator;
@@ -32,6 +33,7 @@ class CustomTextFormField extends StatelessWidget {
   final hintTextSize;
   final hintText;
   final fillColor;
+  final Widget? suffixIcon;
   TextInputType keyboardType;
   int maxLength;
 
@@ -100,6 +102,7 @@ class CustomTextFormField extends StatelessWidget {
         ),
         hintText: hintText,
         fillColor: fillColor,
+        suffixIcon: suffixIcon,
       ),
     );
   }
