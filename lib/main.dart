@@ -2,7 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../screens/home_screen.dart';
-import '../screens/newsfeed_screen.dart';
+import '../screens/register_screen.dart';
+import '../screens/login_screen.dart';
 
 void main() {
   runApp(const FacebookReplicationCantuba());
@@ -21,10 +22,11 @@ class FacebookReplicationCantuba extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Facebook Replication',
-          initialRoute: '/home',
+          initialRoute: '/login',
           routes: {
-            '/newsfeed': (context) => const NewsFeedScreen(),
+            '/login': (context) => const LogInScreen(),
             '/home': (context) => const HomeScreen(),
+            '/register': (context) => const RegisterScreen(),
           },
         );
       },
