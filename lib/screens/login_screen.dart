@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../constants.dart';
 import '../widgets/custom_inkwell_button.dart';
+import 'home_screen.dart';
 import 'profile_screen.dart';
 
 class LogInScreen extends StatefulWidget {
@@ -22,12 +23,16 @@ class _LogInScreenState extends State<LogInScreen> {
   void _loginDialog() {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-       Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => ProfileScreen()), 
-    );
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HomeScreen(username: usernameController.text),
+        ),
+      );
     } else {
-      customDialog(context, title: 'Invalid Input', content: 'Please enter both username and password.');
+      customDialog(context,
+          title: 'Invalid Input',
+          content: 'Please enter both username and password.');
     }
   }
 
