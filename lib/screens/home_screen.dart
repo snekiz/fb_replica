@@ -7,7 +7,9 @@ import '../screens/newsfeed_screen.dart';
 import '../widgets/custom_font.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  final String username;
+
+  const HomeScreen({super.key, required this.username});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -32,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
               )
             : _selectedIndex == 2
                 ? CustomFont(
-                    text: 'Kurt Cantuba',
+                    text: widget.username,
                     fontSize: ScreenUtil().setSp(25),
                     color: FB_PRIMARY,
                     fontFamily: 'Klavika',
@@ -46,10 +48,10 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: PageView(
         controller: _pageController,
-        children: const <Widget>[
+        children: <Widget>[
           NewsFeedScreen(),
           NotificationScreen(),
-          ProfileScreen(),
+          ProfileScreen(username: widget.username),
         ],
         onPageChanged: (page) {
           setState(() {

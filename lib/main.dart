@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../screens/home_screen.dart';
@@ -24,7 +23,7 @@ class FacebookReplicationCantuba extends StatelessWidget {
           title: 'Facebook Replication',
           initialRoute: '/login',
           routes: {
-             '/home': (context) => const HomeScreen(),
+            // '/home': (context) => const HomeScreen(),
             '/login': (context) => const LogInScreen(),
             '/register': (context) => const RegisterScreen(),
           },
