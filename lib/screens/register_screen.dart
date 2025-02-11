@@ -25,7 +25,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   bool isConfirmPasswordVisible = false;
 
   void register() {
-  // Ensure controllers are not null
   if (_formKey.currentState != null && _formKey.currentState!.validate()) {
     _formKey.currentState!.save();
   } else {

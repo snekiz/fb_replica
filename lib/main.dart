@@ -22,7 +22,7 @@ class FacebookReplicationCantuba extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Facebook Replication',
-          initialRoute: '/home',
+          initialRoute: '/login',
           routes: {
              '/home': (context) => const HomeScreen(),
             '/login': (context) => const LogInScreen(),
